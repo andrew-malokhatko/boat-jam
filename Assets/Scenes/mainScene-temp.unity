@@ -1772,6 +1772,7 @@ MonoBehaviour:
   - {fileID: 1670233403}
   - {fileID: 1048122408}
   speed: 1
+  climbSpeed: 0
 --- !u!50 &412904941
 Rigidbody2D:
   serializedVersion: 5
@@ -1910,7 +1911,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -855298285791758126, guid: 42a16e1451864664789ac6b917703224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
