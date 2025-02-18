@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private List<Transform> points;
     [SerializeField] private float speed;
     [SerializeField] private float climbSpeed;
+    [SerializeField] private int ForbiddenIndex;
 
     private Animator animator;
     private int currentIndex;
@@ -15,6 +16,8 @@ public class Enemy : MonoBehaviour
     private bool isDead;
     private bool isClimbing = false;
     private Rigidbody2D rb;
+    private bool directionToRight = true;
+    private bool isOnUp = false;
 
 
     void Start()
@@ -68,7 +71,6 @@ public class Enemy : MonoBehaviour
         //animator.SetTrigger("climbing");
 
         // next code checks if next point under or over
-        bool isOnUp = false;
         if (transform.position.y < currentPoint.y)
             isOnUp = true;
         else
@@ -134,19 +136,37 @@ public class Enemy : MonoBehaviour
         walking = true;
     }
 
+    // enemy movements
     private void ChooseNextPoint()
     {
-        currentIndex = ++currentIndex < points.Count ? currentIndex : 0;
+        if (points.Count == currentIndex + 1)
+        {
+            directionToRight = false;
+        }
+
+        // if point is out of reach, so we cannot move next to the left point in array
+        if (currentIndex - 1 == -1 || currentIndex - 1 == ForbiddenIndex)
+        {
+            directionToRight = true;
+        }
+
+        if (!directionToRight)
+            currentIndex--;
+        else
+            currentIndex++;
+
         currentPoint = points[currentIndex].position;
 
         ChooseDirection();
     }
 
+    // flips image of enemy (right of left)
     private void ChooseDirection()
     {
         GetComponent<SpriteRenderer>().flipX = currentPoint.x < transform.position.x;
     }
 
+    // kill player
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isDead && collision.transform.tag == "Player")

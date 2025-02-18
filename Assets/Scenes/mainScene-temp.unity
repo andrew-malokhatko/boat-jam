@@ -1771,8 +1771,14 @@ MonoBehaviour:
   - {fileID: 1848808488}
   - {fileID: 1670233403}
   - {fileID: 1048122408}
-  speed: 1
-  climbSpeed: 0
+  - {fileID: 550357113}
+  - {fileID: 1765888415}
+  - {fileID: 1607935361}
+  - {fileID: 1856519230}
+  - {fileID: 613267728}
+  speed: 2
+  climbSpeed: 2
+  ForbiddenIndex: 1
 --- !u!50 &412904941
 Rigidbody2D:
   serializedVersion: 5
@@ -2022,7 +2028,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 0.56, z: -10}
+  m_LocalPosition: {x: -0.4, y: -0.02, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
