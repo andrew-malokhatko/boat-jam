@@ -22,12 +22,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        bool attack = Input.GetButtonDown("Fire1");
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
             animator.SetBool("isJumping", true);
             isGrounded = false;
+        }
+        else if (attack)
+        {
+            GetComponent<Animator>().Play("ATTACK", -1, 0f);
         }
 
         Flip();
