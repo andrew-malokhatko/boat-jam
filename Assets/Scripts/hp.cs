@@ -2,7 +2,14 @@ using UnityEngine;
 
 public class hp : MonoBehaviour
 {
-    public int health = 100;
+    public int health = 50;
+    private bool isDead = false;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void TakeDamage(int damage)
     {
@@ -19,6 +26,8 @@ public class hp : MonoBehaviour
     public void Dead()
     {
         Debug.Log("Player is dead!");
-    }
+        isDead = true;
 
+        animator.SetTrigger("isDead");
+    }
 }

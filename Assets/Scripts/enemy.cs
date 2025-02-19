@@ -59,7 +59,6 @@ public class Enemy : MonoBehaviour
             ChooseNextPoint();
             StartClimbing();
         }
-        Walk();
 
         if (isClimbing)
         {
@@ -77,6 +76,8 @@ public class Enemy : MonoBehaviour
         {
             attackCooldown -= Time.deltaTime;
         }
+        else
+            Walk();
     }
 
     public bool IsPointOnLadder(Vector3 worldPosition)
@@ -191,9 +192,8 @@ public class Enemy : MonoBehaviour
         GetComponent<SpriteRenderer>().flipX = currentPoint.x < transform.position.x;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(attackCooldown);
         if (!isDead && collision.transform.tag == "Player" && attackCooldown <= 0f)
         {
             hp playerScript = collision.gameObject.GetComponent<hp>();
