@@ -5,28 +5,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //[SerializeField] private List<Transform> points;
     public Node currentNode;
     [SerializeField] private float speed;
     [SerializeField] private float climbSpeed;
+    [SerializeField] private float attackRate = 1.0f;
     public Tilemap tilemap;
 
     private Animator animator;
-    private int currentIndex;
     private Vector2 currentPoint;
     private bool walking;
     private bool isDead;
     private bool isClimbing = false;
     private Rigidbody2D rb;
-    private bool isOnUp = false;
     private bool isOnLadder = false;
     private bool isNextPointOnLadder = false;
+    private float attackCooldown = 0f;
 
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        //currentPoint = points[0].position;
         currentPoint = currentNode.transform.position;
         rb = GetComponent<Rigidbody2D>();
 
@@ -42,7 +40,8 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("dead");
             StartCoroutine(FadeAndDestroy());
             walking = false;
-            animator.SetBool("walk", false);
+            animator.SetBool("run", false);
+
             //return; 
         }
 
@@ -64,22 +63,19 @@ public class Enemy : MonoBehaviour
 
         if (isClimbing)
         {
-            // climbing to up
-            if (isOnUp)
-            {
-                rb.gravityScale = 0;
-                float step = climbSpeed * Time.deltaTime;
-                float newY = Mathf.MoveTowards(transform.position.y, currentPoint.y, step);
-                transform.position = new Vector2(transform.position.x, newY);
-            }
-            else
-            {
-                //fix
-            }
+            rb.gravityScale = 0;
+            float step = climbSpeed * Time.deltaTime;
+            float newY = Mathf.MoveTowards(transform.position.y, currentPoint.y, step);
+            transform.position = new Vector2(transform.position.x, newY);
         }
         else
         {
             rb.gravityScale = 1;
+        }
+
+        if (attackCooldown > 0)
+        {
+            attackCooldown -= Time.deltaTime;
         }
     }
 
@@ -108,15 +104,6 @@ public class Enemy : MonoBehaviour
     void StartClimbing()
     {
         animator.SetBool("run", false);
-        //fix
-        //walking = false;
-        //animator.SetTrigger("climbing");
-
-        // next code checks if next point under or over
-        if (transform.position.y < currentPoint.y)
-            isOnUp = true;
-        else
-            isOnUp = false;
     }
 
     IEnumerator FadeAndDestroy()
@@ -145,6 +132,16 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
+        //bool checkAnim = false;
+        //if (!attacking)
+        //{
+        //    animator.SetBool("run", walking);
+        //}
+        //else
+        //{
+        //    animator.SetBool("run", false);
+        //}
+        //Debug.Log(walking);
         animator.SetBool("run", walking);
 
         if (walking)
@@ -153,15 +150,16 @@ public class Enemy : MonoBehaviour
             float newX = Mathf.MoveTowards(transform.position.x, currentPoint.x, step);
             transform.position = new Vector2(newX, transform.position.y);
 
+            // fix
             if (Vector3.Distance(transform.position, currentPoint) < 0.2f && !isClimbing && !isNextPointOnLadder)
             {
-                StartCoroutine(Idle());
+                //StartCoroutine(Idle());
+                ChooseNextPoint();
             }
             if (Vector3.Distance(transform.position, currentPoint) < 0.2f && isClimbing)
             {
                 ChooseNextPoint();
                 isNextPointOnLadder = false;
-                isOnUp = false;
                 isOnLadder = false;
                 isClimbing = false;
                 rb.gravityScale = 1;
@@ -173,7 +171,7 @@ public class Enemy : MonoBehaviour
     {
         walking = false;
         animator.SetTrigger("idle");
-        ChooseNextPoint();
+        
 
         yield return new WaitForSeconds(0.01f);
 
@@ -182,8 +180,6 @@ public class Enemy : MonoBehaviour
 
     private void ChooseNextPoint()
     {
-        //currentIndex = ++currentIndex < points.Count ? currentIndex : 0;
-        //currentPoint = points[currentIndex].position;
         currentNode = currentNode.nextPoint;
         currentPoint = currentNode.transform.position;
 
@@ -195,12 +191,20 @@ public class Enemy : MonoBehaviour
         GetComponent<SpriteRenderer>().flipX = currentPoint.x < transform.position.x;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!isDead && collision.transform.tag == "Player")
+        Debug.Log(attackCooldown);
+        if (!isDead && collision.transform.tag == "Player" && attackCooldown <= 0f)
         {
-            // FIX
-            //collision.gameObject.GetComponent<Player>().Dead();
+            hp playerScript = collision.gameObject.GetComponent<hp>();
+
+
+            if (playerScript != null)
+            {
+                animator.SetTrigger("attack");
+                playerScript.TakeDamage(25);
+                attackCooldown = attackRate;
+            }
         }
     }
 
