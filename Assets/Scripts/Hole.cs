@@ -27,12 +27,18 @@ public class Hole : Interactable
         {
             Destroy(waterInstance.gameObject);
         }
-        
+
+        if (toolTipInstance != null)
+        {
+            Destroy(toolTipInstance);
+        }
+
         Destroy(gameObject);
     }
 
     public override void Interact()
     {
+        Destroy();
         Debug.Log("Interacted with HOLE");
     }
 
@@ -52,7 +58,7 @@ public class Hole : Interactable
         }
         else
         {
-            Destroy(toolTipInstance);
+            Destroy(toolTipInstance);   
         }
     }
 }
