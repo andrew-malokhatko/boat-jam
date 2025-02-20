@@ -25,8 +25,20 @@ public class WaterSpawner : MonoBehaviour
     {
         Vector3 randomPos = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), 0);
 
+        if (waterParticles == null)
+        {
+            Debug.Log("Mistake!");
+            return;
+        }
+
         // Spawn water particle system
         Instantiate(waterParticles, randomPos, Quaternion.identity);
+
+        if (holes == null || holes.Length == 0)
+        {
+            Debug.LogError("Mistake!");
+            return;
+        }
 
         // Spawn hole sprite
         GameObject holeObject = new GameObject("Hole");
