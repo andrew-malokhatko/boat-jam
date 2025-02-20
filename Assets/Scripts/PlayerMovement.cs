@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<Animator>().Play("ATTACK", -1, 0f);
         }
 
+        CheckInteraction();
+
         Flip();
     }
 
@@ -58,9 +60,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private void  OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
         animator.SetBool("isJumping", false);
+    }
+
+    private void CheckInteraction()
+    {
+        // Player interacts with Interactables on key "E"
+        if (!Input.GetKeyDown(KeyCode.E))
+        {
+            return;
+        }
+
+        // create a box of boxSize around the player and check for collisions
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            // if component is interactable 
+            if (hit.transform.GetComponent<Interactable>())
+            {
+                hit.transform.GetComponent<Interactable>().Interact();
+                return;
+            }
+        }
     }
 }
