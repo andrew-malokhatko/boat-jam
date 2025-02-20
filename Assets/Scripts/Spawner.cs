@@ -6,8 +6,6 @@ public class Spawner : MonoBehaviour
 {
     public Hole hole;
 
-    private List<Hole> holes;
-
     private void Start()
     {
         StartCoroutine(SpawnLoop());

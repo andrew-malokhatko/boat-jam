@@ -3,46 +3,135 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Vector2 boxSize = new Vector2(1.5f, 1.5f);
-
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 6f;
+    private float acceleration = 10f;
+    private float deceleration = 20f;
+    private float currentSpeed = 0f;
+    private float sprintMultiplier = 1.5f;
+    private float jumpTime = 0.2f;
+    private float jumpTimer;
+    private float normalDrag = 5f;
+    private float iceDrag = 0f;
+
     private bool isFacingRight = true;
-    private bool isGrounded = true;
+    private bool isGrounded;
+    private bool isJumping;
+    private bool isOnIce = false;
+
+    private int maxJumps = 2;
+    private int jumpCount;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    Vector2 boxSize = new Vector2(1.5f, 1.5f);
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        GameObject[] groundObjects = GameObject.FindGameObjectsWithTag("Ground");
+
+        foreach (GameObject ground in groundObjects)
+        {
+            ground.layer = LayerMask.NameToLayer("Ground");
+        }
+
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
-    
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ice"))
+        {
+            isOnIce = true;
+            rb.linearDamping = iceDrag;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ice"))
+        {
+            isOnIce = false;
+            rb.linearDamping = normalDrag;
+        }
+    }
+
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
         bool attack = Input.GetButtonDown("Fire1");
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.4f, groundLayer);
+
+        if (isGrounded)
         {
+            jumpCount = maxJumps;
+        }
+
+        animator.SetBool("isJumping", !isGrounded);
+
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount > 0)
+        {
+            isJumping = true;
+            jumpTimer = jumpTime;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
-            animator.SetBool("isJumping", true);
-            isGrounded = false;
+            jumpCount--;
         }
-        else if (attack)
+
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping)
         {
-            GetComponent<Animator>().Play("ATTACK", -1, 0f);
+            if (jumpTimer > 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+                jumpTimer -= Time.deltaTime;
+            }
         }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
+        }
+
+        if (attack)
+        {
+            animator.SetTrigger("Attack"); 
+        }
+
+        CheckInteraction();
 
         Flip();
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        float targetSpeed = horizontal * speed;
+
+        if (isOnIce)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 1f * Time.fixedDeltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            targetSpeed *= sprintMultiplier;
+        }
+
+        if (horizontal != 0)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
+        }
+        else
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, deceleration * Time.deltaTime);
+        }
+
+        rb.linearVelocity = new Vector2(currentSpeed, rb.linearVelocity.y);
         animator.SetFloat("xVelocity", Math.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
@@ -52,9 +141,8 @@ public class PlayerMovement : MonoBehaviour
         if (isFacingRight && horizontal < 0 || !isFacingRight && horizontal > 0)
         {
             isFacingRight = !isFacingRight;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
+            //transform.Rotate(180f, 0f, 0f);
+            GetComponent<SpriteRenderer>().flipX = !isFacingRight;
         }
     }
     
@@ -62,5 +150,25 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = true;
         animator.SetBool("isJumping", false);
+    }
+    private void CheckInteraction()
+    {
+        if (!Input.GetKeyDown(KeyCode.E))
+        {
+            return;
+        }
+
+        // create a box of boxSize around the player and check for collisions
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            // if component is interactable 
+            if (hit.transform.GetComponent<Interactable>())
+            {
+                hit.transform.GetComponent<Interactable>().Interact();
+                return;
+            }
+        }
     }
 }
