@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Vector2 boxSize = new Vector2(1.5f, 1.5f);
+
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 6f;
@@ -101,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack"); 
         }
 
+        CheckInteraction();
         Flip();
     }
 
@@ -142,19 +145,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //private void CheckInteraction()
-    //{
-    //    // create a box of boxSize around the player and check for collisions
-    //    RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
+    private void CheckInteraction()
+    {
+        if (!Input.GetKeyDown(KeyCode.E))
+        {
+            return;
+        }
 
-    //    foreach (RaycastHit2D hit in hits)
-    //    {
-    //        // if component is interactable 
-    //        if (hit.transform.GetComponent<Interactable>())
-    //        {
-    //            hit.transform.GetComponent<Interactable>().Interact();
-    //            return;
-    //        }
-    //    }
-    //}
+        //create a box of boxSize around the player and check for collisions
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            // if component is interactable 
+            if (hit.transform.GetComponent<Interactable>())
+            {
+                hit.transform.GetComponent<Interactable>().Interact();
+                return;
+            }
+        }
+    }
 }
