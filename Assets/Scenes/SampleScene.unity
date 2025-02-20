@@ -176,9 +176,9 @@ GameObject:
   - component: {fileID: 38257433}
   - component: {fileID: 38257432}
   - component: {fileID: 38257434}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap_Base
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2758,9 +2758,9 @@ GameObject:
   - component: {fileID: 913578904}
   - component: {fileID: 913578906}
   - component: {fileID: 913578905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TileMap_BG
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7102,9 +7102,9 @@ GameObject:
   - component: {fileID: 1322449242}
   - component: {fileID: 1322449244}
   - component: {fileID: 1322449243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TileMap_Deco
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9086,9 +9086,9 @@ GameObject:
   - component: {fileID: 1417179126}
   - component: {fileID: 1417179128}
   - component: {fileID: 1417179127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap_OnTable
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9745,9 +9745,9 @@ GameObject:
   - component: {fileID: 1891942925}
   - component: {fileID: 1891942927}
   - component: {fileID: 1891942926}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap_Interact
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
