@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    Vector2 boxSize = new Vector2(1.5f, 1.5f);
+
     void Start()
     {
         GameObject[] groundObjects = GameObject.FindGameObjectsWithTag("Ground");
@@ -101,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack"); 
         }
 
+        CheckInteraction();
+
         Flip();
     }
 
@@ -141,20 +145,30 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = !isFacingRight;
         }
     }
+    
+    private void  OnTriggerEnter2D(Collider2D collision)
+    {
+        isGrounded = true;
+        animator.SetBool("isJumping", false);
+    }
+    private void CheckInteraction()
+    {
+        if (!Input.GetKeyDown(KeyCode.E))
+        {
+            return;
+        }
 
-    //private void CheckInteraction()
-    //{
-    //    // create a box of boxSize around the player and check for collisions
-    //    RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
+        // create a box of boxSize around the player and check for collisions
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
 
-    //    foreach (RaycastHit2D hit in hits)
-    //    {
-    //        // if component is interactable 
-    //        if (hit.transform.GetComponent<Interactable>())
-    //        {
-    //            hit.transform.GetComponent<Interactable>().Interact();
-    //            return;
-    //        }
-    //    }
-    //}
+        foreach (RaycastHit2D hit in hits)
+        {
+            // if component is interactable 
+            if (hit.transform.GetComponent<Interactable>())
+            {
+                hit.transform.GetComponent<Interactable>().Interact();
+                return;
+            }
+        }
+    }
 }
