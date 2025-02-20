@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("isJumping", !isGrounded);
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount > 0)
         {
             isJumping = true;
             jumpTimer = jumpTime;
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             jumpCount--;
         }
 
-        if (Input.GetKey(KeyCode.Space) && isJumping)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping)
         {
             if (jumpTimer > 0)
             {
@@ -142,19 +142,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void CheckInteraction()
-    {
-        // create a box of boxSize around the player and check for collisions
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
+    //private void CheckInteraction()
+    //{
+    //    // create a box of boxSize around the player and check for collisions
+    //    RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
 
-        foreach (RaycastHit2D hit in hits)
-        {
-            // if component is interactable 
-            if (hit.transform.GetComponent<Interactable>())
-            {
-                hit.transform.GetComponent<Interactable>().Interact();
-                return;
-            }
-        }
-    }
+    //    foreach (RaycastHit2D hit in hits)
+    //    {
+    //        // if component is interactable 
+    //        if (hit.transform.GetComponent<Interactable>())
+    //        {
+    //            hit.transform.GetComponent<Interactable>().Interact();
+    //            return;
+    //        }
+    //    }
+    //}
 }
