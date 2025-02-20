@@ -1,14 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class hp : MonoBehaviour
 {
-    public int health = 50;
+    public int maxHP;
+    private int health;
     private bool isDead = false;
     private Animator animator;
+    public Image healthBar;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        health = maxHP;
+    }
+
+    public void Update()
+    {
+        healthBar.fillAmount = (float)health / maxHP;
     }
 
     public void TakeDamage(int damage)
