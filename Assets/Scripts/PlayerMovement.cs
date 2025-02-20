@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector2 boxSize = new Vector2(1.5f, 1.5f);
-
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 6f;
@@ -29,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+    Vector2 boxSize = new Vector2(1.5f, 1.5f);
 
     void Start()
     {
@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         CheckInteraction();
+
         Flip();
     }
 
@@ -144,7 +145,12 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = !isFacingRight;
         }
     }
-
+    
+    private void  OnTriggerEnter2D(Collider2D collision)
+    {
+        isGrounded = true;
+        animator.SetBool("isJumping", false);
+    }
     private void CheckInteraction()
     {
         if (!Input.GetKeyDown(KeyCode.E))
@@ -152,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        //create a box of boxSize around the player and check for collisions
+        // create a box of boxSize around the player and check for collisions
         RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0.0f, Vector2.zero);
 
         foreach (RaycastHit2D hit in hits)
