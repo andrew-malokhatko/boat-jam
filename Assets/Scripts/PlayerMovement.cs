@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Vector2 boxSize = new Vector2(1.5f, 1.5f);
+
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 6f;
@@ -56,9 +58,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private void  OnTriggerEnter2D(Collider2D collision){
+    private void  OnTriggerEnter2D(Collider2D collision)
+    {
         isGrounded = true;
         animator.SetBool("isJumping", false);
-
     }
 }
