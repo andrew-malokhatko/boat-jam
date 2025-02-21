@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using UnityEditor.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -69,7 +70,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 1;
+            if (rb != null)
+                rb.gravityScale = 1;
         }
 
         if (attackCooldown > 0)
@@ -208,13 +210,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Hit()
+    public void setDead()
     {
         isDead = true;
-        animator.SetBool("run", false);
-        animator.SetTrigger("dead");
-        Destroy(GetComponent<Collider2D>(), 1);
-        Destroy(GetComponent<Rigidbody2D>(), 1);
-        Destroy(this, 2);
+        Destroy(GetComponent<BoxCollider2D>());
+        Destroy(GetComponent<Rigidbody2D>());
+        transform.position -= new Vector3(0, 0.2f, 0);
     }
 }

@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (attack)
         {
-            animator.SetTrigger("Attack"); 
+            animator.SetTrigger("isAttacking"); 
         }
 
         CheckInteraction();

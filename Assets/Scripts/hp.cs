@@ -7,10 +7,11 @@ public class hp : MonoBehaviour
     private int health;
     private bool isDead = false;
     private Animator animator;
-    public Image healthBar;
+    private Image healthBar;
 
     private void Start()
     {
+        healthBar = transform.Find("Canvas/Background bar/Health bar").GetComponent<Image>();
         animator = GetComponent<Animator>();
         health = maxHP;
     }
