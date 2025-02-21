@@ -23,6 +23,8 @@ public class Wheel : Interactable
     private GameObject instructionInstance;
     public Sprite[] instructionSprites;
 
+    public CameraZoom cameraZoom;
+
     bool isInteracting = false;
 
     public void Start()
@@ -83,12 +85,16 @@ public class Wheel : Interactable
                     spawnActionKeyTooltip(i);
                 }
 
+                cameraZoom.ZoomIn(1.05f);
+
                 // particles are removed automatically
                 Instantiate(steeringParticles, transform.position, Quaternion.identity);
             }
 
             yield return null;
         }
+
+        cameraZoom.ResetZoom();
 
         // reset the color after the end of interaction (due to the pulse)
         spriteRenderer.color = Color.white;
