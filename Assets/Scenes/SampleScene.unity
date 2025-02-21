@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hole: {fileID: 6093993061792079210, guid: 43b47931f528cba4389fa66065fb2fbb, type: 3}
+  wheel: {fileID: 748356092}
 --- !u!4 &1244793
 Transform:
   m_ObjectHideFlags: 0
@@ -1985,13 +1986,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: keysSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'keysSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -452402898, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'keysSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: -1016464497, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'keysSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1338801015, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'keysSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1771897806, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: instructionSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'instructionSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: -452402898, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'instructionSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: -1016464497, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'instructionSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1338801015, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: 'instructionSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1771897806, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
     - target: {fileID: 1178767287795990489, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1178767287795990489, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.76
+      value: 2.24
       objectReference: {fileID: 0}
     - target: {fileID: 1178767287795990489, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2164,8 +2205,8 @@ Transform:
   m_GameObject: {fileID: 347531346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: -0.3, z: -9.69}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 38257431}
@@ -2339,7 +2380,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.7862635
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2747,6 +2788,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &748356092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+  m_PrefabInstance: {fileID: 201833064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fdfe5c148d1f4499db0b8e1e569455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &913578903
 GameObject:
   m_ObjectHideFlags: 0
