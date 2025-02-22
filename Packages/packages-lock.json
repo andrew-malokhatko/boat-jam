@@ -51,7 +51,7 @@
       }
     },
     "com.unity.test-framework": {
-      "version": "1.4.6",
+      "version": "1.4.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {
