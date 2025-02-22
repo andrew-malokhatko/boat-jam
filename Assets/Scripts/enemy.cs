@@ -213,6 +213,7 @@ public class Enemy : MonoBehaviour
     public void setDead()
     {
         isDead = true;
+        animator.SetTrigger("dead");
         Destroy(GetComponent<BoxCollider2D>());
         Destroy(GetComponent<Rigidbody2D>());
         transform.position -= new Vector3(0, 0.2f, 0);
