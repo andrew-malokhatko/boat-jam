@@ -160,7 +160,7 @@ public class PlayerMovement : Sounds
         }
     }
     
-    private void  OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
         animator.SetBool("isJumping", false);
