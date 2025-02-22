@@ -11,7 +11,7 @@ public class Hole : Interactable
 
     // used to remove hole from the scene
     private ParticleSystem waterInstance;
-    private GameObject toolTipInstance;
+    private GameObject toolTipInstance; 
 
     private void Awake()
     {
