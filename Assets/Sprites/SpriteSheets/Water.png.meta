@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,9 +122,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 63
-        width: 96
-        height: 33
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       name: Water_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 31
+        x: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -165,10 +165,10 @@ TextureImporter:
       name: Water_2
       rect:
         serializedVersion: 2
-        x: 33
-        y: 31
+        x: 64
+        y: 64
         width: 32
-        height: 33
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,9 +187,9 @@ TextureImporter:
       name: Water_3
       rect:
         serializedVersion: 2
-        x: 65
-        y: 31
-        width: 31
+        x: 0
+        y: 32
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -209,10 +209,10 @@ TextureImporter:
       name: Water_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 31
-        height: 31
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,9 +231,9 @@ TextureImporter:
       name: Water_5
       rect:
         serializedVersion: 2
-        x: 31
-        y: 0
-        width: 33
+        x: 64
+        y: 32
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -253,10 +253,10 @@ TextureImporter:
       name: Water_6
       rect:
         serializedVersion: 2
-        x: 63
+        x: 0
         y: 0
         width: 32
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,11 +271,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Water_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb19c559c25ebcf4eb92e3c76bee2d1b
+      internalID: 1364689466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Water_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c0f829c6f47f19439d614d82f6ae332
+      internalID: -1258856502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a9f195e13eb5b904da5b656fe0a9b43f
     internalID: 0
     vertices: []
     indices: 
@@ -284,7 +328,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Water_0: 6049605792901559095
+      Water_1: -5882170695943828418
+      Water_2: 7591774343886807129
+      Water_3: 8088830456793213489
+      Water_4: 4177692092066526168
+      Water_5: 8954592487278907307
+      Water_6: -4906324669642958461
+      Water_7: 1364689466
+      Water_8: -1258856502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

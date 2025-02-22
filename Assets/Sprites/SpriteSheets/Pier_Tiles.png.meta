@@ -58,7 +58,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -125,9 +125,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 63
-        width: 108
-        height: 65
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: Pier_Tiles_1
       rect:
         serializedVersion: 2
-        x: 63
-        y: 84
-        width: 65
-        height: 7
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: Pier_Tiles_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 31
-        width: 11
-        height: 19
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +190,10 @@ TextureImporter:
       name: Pier_Tiles_3
       rect:
         serializedVersion: 2
-        x: 31
-        y: 49
-        width: 34
-        height: 10
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +212,10 @@ TextureImporter:
       name: Pier_Tiles_4
       rect:
         serializedVersion: 2
-        x: 65
-        y: 0
-        width: 10
-        height: 65
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: Pier_Tiles_5
       rect:
         serializedVersion: 2
-        x: 97
-        y: 0
-        width: 10
-        height: 65
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +256,10 @@ TextureImporter:
       name: Pier_Tiles_6
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 10
-        height: 8
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: Pier_Tiles_7
       rect:
         serializedVersion: 2
-        x: 33
-        y: 0
-        width: 10
-        height: 33
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,11 +296,187 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85b8c3487bbc23428686779b8a56ac9
+      internalID: 384682363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed05c0ad5036c9438b900263ec3d594
+      internalID: -65882690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5936e7ec28007a441a37ed14dfc97c73
+      internalID: -168846429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db510beb785b72449e719201d75c0bc
+      internalID: 703590563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4a1d400b78abb04a8f5d140ce4a9cfe
+      internalID: 115825420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ce620e4e4782240801c1bc711c3e17
+      internalID: 3698985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 668c06792a33c0443b4602a630913b85
+      internalID: 714603616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pier_Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7d61dfda2276f499eb1fa48ee6f858
+      internalID: -1705669156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2ebf1f938de35b54aa0f7d0228cee68b
     internalID: 0
     vertices: []
     indices: 
@@ -309,7 +485,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pier_Tiles_0: -5095526350140598120
+      Pier_Tiles_1: -5221451907452175137
+      Pier_Tiles_10: -168846429
+      Pier_Tiles_11: 703590563
+      Pier_Tiles_12: 115825420
+      Pier_Tiles_13: 3698985
+      Pier_Tiles_14: 714603616
+      Pier_Tiles_15: -1705669156
+      Pier_Tiles_2: 8751700247988675822
+      Pier_Tiles_3: -7988923175139933081
+      Pier_Tiles_4: -4640546912523317687
+      Pier_Tiles_5: -7341125588653365040
+      Pier_Tiles_6: 4776279394119424561
+      Pier_Tiles_7: -2182687806607579924
+      Pier_Tiles_8: 384682363
+      Pier_Tiles_9: -65882690
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
