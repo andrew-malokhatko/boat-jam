@@ -28,6 +28,7 @@ public class PlayerMovement : Sounds
     [SerializeField] private Animator animator;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ParticleSystem DoubleJump;
 
     Vector2 boxSize = new Vector2(1.5f, 1.5f);
     bool isLocked = false;
@@ -87,6 +88,11 @@ public class PlayerMovement : Sounds
             rb.gravityScale = 2.5f;
             jumpCount--;
 			PlaySound(sounds[0]);
+
+            if (jumpCount == 0 && DoubleJump != null)
+            {
+                DoubleJump.Play();
+            } 
         }
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping && jumpTimer > 0)
