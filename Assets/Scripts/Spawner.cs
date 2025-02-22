@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour
     public Hole hole;
     public Wheel wheel;
 
+    private Hole holeInstance = null;
+
     // Max time for each object in seconds
     private const float maxHoleTime = 25.0f;
     private const float maxWheelTime = 12.0f;
@@ -23,35 +25,41 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (hole)
+        if (holeInstance)
         {
             if (timeSinceHole > maxHoleTime)
             {
-                Debug.Log("End game");
 				SceneManager.LoadScene("Menu");
                 // Game End
             }
 
             timeSinceHole += Time.deltaTime;
         }
+        else
+        {
+            timeSinceHole = 0.0f;
+        }
 
         if (wheel.requiresSteering)
         {
             if (timeSinceWheel > maxWheelTime)
             {
-                Debug.Log("End game");
 				SceneManager.LoadScene("Menu");
                 // Game end
             }
 
             timeSinceWheel += Time.deltaTime;
         }
+        else
+        {
+            timeSinceWheel = 0.0f;
+        }
     }
 
     private IEnumerator HoleSpawnLoop()
     {
         // spawn first hole after 9 - 12 seconds from start
-        yield return new WaitForSeconds(Random.Range(12f, 17f));
+        yield return new WaitForSeconds(Random.Range(10f, 17f));
 
         while (true)
         {
@@ -73,16 +81,16 @@ public class Spawner : MonoBehaviour
             wheel.requiresSteering = true;
 
             // require steering every 9 to 12 seconds
-            float waitTime = Random.Range(9f, 12f);
+            float waitTime = Random.Range(12f, 15f);
             yield return new WaitForSeconds(waitTime);
         }
     }
 
     private void SpawnObjects()
     {
-        Vector3 randomPos = new Vector3(Random.Range(-6f, 6f), Random.Range(-3.3f, -4f), 0);
+        Vector3 randomPos = new Vector3(Random.Range(-12f, 12f), Random.Range(-3.3f, -4f), 0);
 
         // spawn hole
-        Instantiate(hole, randomPos, Quaternion.identity);
+        holeInstance = Instantiate(hole, randomPos, Quaternion.identity);
     }
 }

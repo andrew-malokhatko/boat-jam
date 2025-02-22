@@ -5,7 +5,8 @@ public class PlayerMovement : Sounds
 {
     private float horizontal;
     private float speed = 8f;
-    private float jumpingPower = 6f;
+    private float jumpingPower = 8f;
+    private float maxJumpPower = 12f;
     private float acceleration = 10f;
     private float deceleration = 20f;
     private float currentSpeed = 0f;
@@ -27,8 +28,10 @@ public class PlayerMovement : Sounds
     [SerializeField] private Animator animator;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ParticleSystem DoubleJump;
 
     Vector2 boxSize = new Vector2(1.5f, 1.5f);
+    bool isLocked = false;
 
     void Start()
     {
@@ -67,9 +70,10 @@ public class PlayerMovement : Sounds
 
         bool attack = Input.GetButtonDown("Fire1");
 
+        bool wasGrounded = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.4f, groundLayer);
 
-        if (isGrounded)
+        if (isGrounded && !wasGrounded)
         {
             jumpCount = maxJumps;
         }
@@ -81,22 +85,29 @@ public class PlayerMovement : Sounds
             isJumping = true;
             jumpTimer = jumpTime;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            rb.gravityScale = 2.5f;
             jumpCount--;
 			PlaySound(sounds[0]);
+
+            if (jumpCount == 0 && DoubleJump != null)
+            {
+                DoubleJump.Play();
+            } 
         }
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping && jumpTimer > 0)
         {
             if (jumpTimer > 0)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxJumpPower);
                 jumpTimer -= Time.deltaTime;
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             isJumping = false;
+            rb.gravityScale = 3f;
         }
 
         if (attack)
@@ -133,6 +144,15 @@ public class PlayerMovement : Sounds
         }
 
         rb.linearVelocity = new Vector2(currentSpeed, rb.linearVelocity.y);
+
+        if (rb.linearVelocity.y > 10f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 10f);
+        }
+        //if (rb.linearVelocity.y < -12f) {
+        //    rb.linearVelocity = new Vector2(rb.linearVelocity.x, -12f);
+        //}
+
         animator.SetFloat("xVelocity", Math.Abs(rb.linearVelocity.x));
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
     }
@@ -147,7 +167,7 @@ public class PlayerMovement : Sounds
         }
     }
     
-    private void  OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
         animator.SetBool("isJumping", false);
@@ -171,5 +191,15 @@ public class PlayerMovement : Sounds
                 return;
             }
         }
+    }
+
+    public void LockMovement()
+    {
+        isLocked = true;
+    }
+
+    public void UnlockMovement()
+    {
+        isLocked = false;
     }
 }
