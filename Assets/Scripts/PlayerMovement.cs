@@ -113,6 +113,7 @@ public class PlayerMovement : Sounds
         if (attack)
         {
             animator.SetTrigger("isAttacking"); 
+			PlaySound(sounds[1]);
         }
 
         CheckInteraction();
