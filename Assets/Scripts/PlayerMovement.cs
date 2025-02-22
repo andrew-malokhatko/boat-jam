@@ -30,6 +30,7 @@ public class PlayerMovement : Sounds
     [SerializeField] private LayerMask groundLayer;
 
     Vector2 boxSize = new Vector2(1.5f, 1.5f);
+    bool isLocked = false;
 
     void Start()
     {
@@ -184,5 +185,15 @@ public class PlayerMovement : Sounds
                 return;
             }
         }
+    }
+
+    public void LockMovement()
+    {
+        isLocked = true;
+    }
+
+    public void UnlockMovement()
+    {
+        isLocked = false;
     }
 }
