@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
-using UnityEditor.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float climbSpeed;
     [SerializeField] private float attackRate = 1.0f;
-    public Tilemap tilemap;
+    private Tilemap tilemap;
 
     private Animator animator;
     private Vector2 currentPoint;
@@ -22,38 +21,31 @@ public class Enemy : MonoBehaviour
     private bool isNextPointOnLadder = false;
     private float attackCooldown = 0f;
 
-
     void Start()
     {
+        GameObject obj = GameObject.Find("Tilemap_Interact");
+        tilemap = obj.GetComponent<Tilemap>();  // fix full grid
         animator = GetComponent<Animator>();
         currentPoint = currentNode.transform.position;
         rb = GetComponent<Rigidbody2D>();
 
         ChooseDirection();
-
         walking = true;
     }
 
-
     void Update()
     {
-        if (isDead) {
-            animator.SetTrigger("dead");
-            StartCoroutine(FadeAndDestroy());
-            walking = false;
+        if (isDead)
+        {
             animator.SetBool("run", false);
-
-            //return; 
+            return;
         }
 
         if (IsPointOnLadder(currentPoint))
-        {
             isNextPointOnLadder = true;
-        }
         else
             isNextPointOnLadder = false;
 
-        // starts climbing at ladder
         if (isNextPointOnLadder && isOnLadder && Vector3.Distance(transform.position, currentPoint) < 0.15f)
         {
             isClimbing = true;
@@ -75,9 +67,7 @@ public class Enemy : MonoBehaviour
         }
 
         if (attackCooldown > 0)
-        {
             attackCooldown -= Time.deltaTime;
-        }
         else
             Walk();
     }
@@ -91,17 +81,13 @@ public class Enemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder"))
-        {
             isOnLadder = true;
-        }
     }
 
-    void OnTriggerLeft2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder"))
-        {
             isOnLadder = false;
-        }
     }
 
     void StartClimbing()
@@ -109,42 +95,8 @@ public class Enemy : MonoBehaviour
         animator.SetBool("run", false);
     }
 
-    IEnumerator FadeAndDestroy()
-    {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        Color color = sprite.color;
-
-        yield return new WaitForSeconds(3f);
-
-        float fadeTime = 3f;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1, 0, elapsedTime * 23 / fadeTime);
-
-            color.a = alpha;
-            sprite.color = color;
-            yield return null;
-        }
-
-        Destroy(gameObject);
-    }
-
-
     private void Walk()
     {
-        //bool checkAnim = false;
-        //if (!attacking)
-        //{
-        //    animator.SetBool("run", walking);
-        //}
-        //else
-        //{
-        //    animator.SetBool("run", false);
-        //}
-        //Debug.Log(walking);
         animator.SetBool("run", walking);
 
         if (walking)
@@ -153,12 +105,9 @@ public class Enemy : MonoBehaviour
             float newX = Mathf.MoveTowards(transform.position.x, currentPoint.x, step);
             transform.position = new Vector2(newX, transform.position.y);
 
-            // fix
             if (Vector3.Distance(transform.position, currentPoint) < 0.2f && !isClimbing && !isNextPointOnLadder)
-            {
-                //StartCoroutine(Idle());
                 ChooseNextPoint();
-            }
+
             if (Vector3.Distance(transform.position, currentPoint) < 0.2f && isClimbing)
             {
                 ChooseNextPoint();
@@ -170,22 +119,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator Idle()
-    {
-        walking = false;
-        animator.SetTrigger("idle");
-        
-
-        yield return new WaitForSeconds(0.01f);
-
-        walking = true;
-    }
-
     private void ChooseNextPoint()
     {
         currentNode = currentNode.nextPoint;
         currentPoint = currentNode.transform.position;
-
         ChooseDirection();
     }
 
@@ -199,8 +136,6 @@ public class Enemy : MonoBehaviour
         if (!isDead && collision.transform.tag == "Player" && attackCooldown <= 0f)
         {
             hp playerScript = collision.gameObject.GetComponent<hp>();
-
-
             if (playerScript != null)
             {
                 animator.SetTrigger("attack");
@@ -212,10 +147,43 @@ public class Enemy : MonoBehaviour
 
     public void setDead()
     {
+        if (isDead) return;
         isDead = true;
         animator.SetTrigger("dead");
-        Destroy(GetComponent<BoxCollider2D>());
-        Destroy(GetComponent<Rigidbody2D>());
+
+        BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        if (rigidBody != null)
+        {
+            rigidBody.simulated = false;
+        }
         transform.position -= new Vector3(0, 0.2f, 0);
+
+        StartCoroutine(FadeOutAndDestroy());
+    }
+
+    IEnumerator FadeOutAndDestroy()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        Color color = sprite.color;
+        float fadeTime = 2f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1, 0, elapsedTime / fadeTime);
+            color.a = alpha;
+            sprite.color = color;
+            yield return null;
+        }
+
+        GameObject obj = GameObject.Find("PirateSpawner");
+        StartCoroutine(obj.GetComponent<PirateSpawner>().SpawnPirates(gameObject.transform.parent.name));
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }
