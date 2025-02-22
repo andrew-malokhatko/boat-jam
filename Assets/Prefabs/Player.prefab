@@ -561,6 +561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee41aa180df2a140b9785419d509b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: dd29ae1ab18add542b468f14e6cd06ff, type: 3}
   rb: {fileID: 8105308693178543583}
   animator: {fileID: 5724377747945091567}
   groundCheck: {fileID: 0}
@@ -580,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  health: 0
 --- !u!114 &734982329900037430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,3 +598,4 @@ MonoBehaviour:
   daggerPrefab: {fileID: 1899711602890801421, guid: bf4228b197743ed41adfd4cdb2c6a82e, type: 3}
   throwForce: 10
   rotationSpeed: 250
+  coolDownAttack: 0.75

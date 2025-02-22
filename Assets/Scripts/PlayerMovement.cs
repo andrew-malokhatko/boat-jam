@@ -82,6 +82,7 @@ public class PlayerMovement : Sounds
             jumpTimer = jumpTime;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
             jumpCount--;
+			PlaySound(sounds[0]);
         }
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping)

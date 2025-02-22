@@ -1,6 +1,7 @@
  using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class Spawner : MonoBehaviour
             if (timeSinceHole > maxHoleTime)
             {
                 Debug.Log("End game");
+				SceneManager.LoadScene("Menu");
                 // Game End
             }
 
@@ -38,6 +40,7 @@ public class Spawner : MonoBehaviour
             if (timeSinceWheel > maxWheelTime)
             {
                 Debug.Log("End game");
+				SceneManager.LoadScene("Menu");
                 // Game end
             }
 
