@@ -2,7 +2,7 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))] // Ensures a Collider is attached
-public class Interactable : MonoBehaviour
+public class Interactable : Sounds
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,6 +27,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
+        PlaySound(sounds[0]);
         Debug.LogError("Interact method was called on Interactable which is abstract class");
     }
 }

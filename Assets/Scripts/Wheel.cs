@@ -24,6 +24,7 @@ public class Wheel : Interactable
     public Sprite[] instructionSprites;
 
     public CameraZoom cameraZoom;
+    public PlayerMovement playerMovement;
 
     bool isInteracting = false;
 
@@ -56,7 +57,7 @@ public class Wheel : Interactable
 
         // destroy tooltip instance, it obscures instructions
         Destroy(toolTipInstance);
-
+        PlaySound(sounds[0]);
         StartCoroutine(StartInteractionCycle());
 
         requiresSteering = false;
@@ -69,6 +70,7 @@ public class Wheel : Interactable
 
         int i = 0;
         spawnActionKeyTooltip(i);
+        playerMovement.LockMovement();
 
         while (i < instructionKeys.Length)
         {
@@ -77,7 +79,9 @@ public class Wheel : Interactable
                 // destroy last instruction instance before assigning new one
                 Destroy(instructionInstance);
                 instructionInstance = null;
+                PlaySound(sounds[0]);
 
+                
                 i++;
 
                 if (i < instructionKeys.Length)
@@ -90,15 +94,16 @@ public class Wheel : Interactable
                 // particles are removed automatically
                 Instantiate(steeringParticles, transform.position, Quaternion.identity);
             }
-
             yield return null;
         }
+
+        playerMovement.UnlockMovement();
 
         cameraZoom.ResetZoom();
 
         // reset the color after the end of interaction (due to the pulse)
         spriteRenderer.color = Color.white;
-
+        PlaySound(sounds[1]);
         Destroy(instructionInstance);
         isInteracting = false;
     }

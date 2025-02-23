@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Spawner : MonoBehaviour
+public class Spawner : Sounds
 {
     public Hole hole;
     public Wheel wheel;
@@ -45,6 +45,8 @@ public class Spawner : MonoBehaviour
             if (timeSinceWheel > maxWheelTime)
             {
 				SceneManager.LoadScene("Menu");
+					PlaySound(sounds[2]);
+
                 // Game end
             }
 
@@ -79,6 +81,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             wheel.requiresSteering = true;
+			PlaySound(sounds[1]);
 
             // require steering every 9 to 12 seconds
             float waitTime = Random.Range(12f, 15f);
@@ -92,5 +95,6 @@ public class Spawner : MonoBehaviour
 
         // spawn hole
         holeInstance = Instantiate(hole, randomPos, Quaternion.identity);
+		PlaySound(sounds[0]);
     }
 }

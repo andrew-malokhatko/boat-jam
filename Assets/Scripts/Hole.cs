@@ -32,7 +32,6 @@ public class Hole : Interactable
         {
             Destroy(toolTipInstance);
         }
-
         Destroy(gameObject);
     }
 
@@ -58,7 +57,7 @@ public class Hole : Interactable
         }
         else
         {
-            Destroy(toolTipInstance);   
+            Destroy(toolTipInstance); 
         }
     }
 }

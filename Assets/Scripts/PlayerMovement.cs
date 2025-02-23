@@ -29,7 +29,7 @@ public class PlayerMovement : Sounds
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private ParticleSystem DoubleJump;
-
+    
     Vector2 boxSize = new Vector2(1.5f, 1.5f);
     bool isLocked = false;
 
@@ -80,39 +80,44 @@ public class PlayerMovement : Sounds
 
         animator.SetBool("isJumping", !isGrounded);
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount > 0)
+        if (!isLocked)
         {
-            isJumping = true;
-            jumpTimer = jumpTime;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
-            rb.gravityScale = 2.5f;
-            jumpCount--;
-			PlaySound(sounds[0]);
-
-            if (jumpCount == 0 && DoubleJump != null)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && jumpCount > 0)
             {
-                DoubleJump.Play();
-            } 
-        }
+                isJumping = true;
+                jumpTimer = jumpTime;
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+                rb.gravityScale = 2.5f;
+                jumpCount--;
+                PlaySound(sounds[0]);
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping && jumpTimer > 0)
-        {
-            if (jumpTimer > 0)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxJumpPower);
-                jumpTimer -= Time.deltaTime;
+                if (jumpCount == 0 && DoubleJump != null)
+                {
+                    Instantiate(DoubleJump, transform.position, Quaternion.identity);
+                    //DoubleJump.Play();
+                }
             }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            isJumping = false;
-            rb.gravityScale = 3f;
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && isJumping && jumpTimer > 0)
+            {
+                if (jumpTimer > 0)
+                {
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxJumpPower);
+                    jumpTimer -= Time.deltaTime;
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                isJumping = false;
+                rb.gravityScale = 3f;
+            }
         }
 
         if (attack)
         {
             animator.SetTrigger("isAttacking"); 
+			PlaySound(sounds[1]);
         }
 
         CheckInteraction();
@@ -122,6 +127,11 @@ public class PlayerMovement : Sounds
 
     private void FixedUpdate()
     {
+        if (isLocked)
+        {
+            return;
+        }
+
         float targetSpeed = horizontal * speed;
 
         if (isOnIce)
