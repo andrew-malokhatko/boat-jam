@@ -427,7 +427,7 @@ MonoBehaviour:
   speed: 8
   climbSpeed: 1.5
   attackRate: 1
-  tilemap: {fileID: 0}
+  healthPickupPrefab: {fileID: 9120393996691853679, guid: 9996bf7b03a94864bbb403279348b12b, type: 3}
 --- !u!1 &4199744797926859185
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,19 +45,19 @@ public class PirateSpawner : MonoBehaviour
         string numberStr = new string(num.Where(char.IsDigit).ToArray());
         int number = int.Parse(numberStr);
 
-        yield return new WaitForSeconds(spawnInterval);
+        //yield return new WaitForSeconds(spawnInterval);
         if (number == 1)
             Instantiate(piratePrefab1, coordsPirate1, Quaternion.identity);
         else if (number == 2)
             Instantiate(piratePrefab2, coordsPirate2, Quaternion.identity);
-        else if (number == 3)
-            Instantiate(piratePrefab2, coordsPirate2, Quaternion.identity);
-        else if (number == 4)
-            Instantiate(piratePrefab2, coordsPirate2, Quaternion.identity);
-        else if (number == 5)
-            Instantiate(piratePrefab2, coordsPirate2, Quaternion.identity);
-        else if (number == 6)
-            Instantiate(piratePrefab2, coordsPirate2, Quaternion.identity);
-        //yield return new WaitForSeconds(0.01f);
+        //else if (number == 3)
+        //    Instantiate(piratePrefab3, coordsPirate3, Quaternion.identity);
+        //else if (number == 4)
+        //    Instantiate(piratePrefab4, coordsPirate4, Quaternion.identity);
+        //else if (number == 5)
+        //    Instantiate(piratePrefab5, coordsPirate5, Quaternion.identity);
+        //else if (number == 6)
+        //    Instantiate(piratePrefab6, coordsPirate6, Quaternion.identity);
+        yield return new WaitForSeconds(0.01f);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class hp : MonoBehaviour
 {
     public int maxHP;
-    public int health;
+    private int health;
     private bool isDead = false;
     private Animator animator;
     private Image healthBar;
@@ -36,7 +36,8 @@ public class hp : MonoBehaviour
     public void Heal(int heal)
     {
         health += heal;
-        
+
+        Debug.Log("hu222221 " + health);
         if (health > maxHP)
         {
             health = maxHP;

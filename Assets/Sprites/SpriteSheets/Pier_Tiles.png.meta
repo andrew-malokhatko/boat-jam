@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pier_Tiles_0: -5095526350140598120
+      Pier_Tiles_1: -5221451907452175137
+      Pier_Tiles_2: 8751700247988675822
+      Pier_Tiles_3: -7988923175139933081
+      Pier_Tiles_4: -4640546912523317687
+      Pier_Tiles_5: -7341125588653365040
+      Pier_Tiles_6: 4776279394119424561
+      Pier_Tiles_7: -2182687806607579924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

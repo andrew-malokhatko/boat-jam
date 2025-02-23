@@ -120,7 +120,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 3037223790527386338, guid: 9808e2786051a82488357528bd471e08, type: 3}
   tooltipObject: {fileID: 6191945732334519948, guid: cd9a822c5ed5d654abde196442e1817d, type: 3}
-  tooltipSprite: {fileID: 0}
-  player: {fileID: 0}
+  tooltipSprite: {fileID: 788060989, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
+  player: {fileID: 1679788456947161616, guid: 0171b5da481093240b74816efa25eeb5, type: 3}
   heal: 35
 --- !u!95 &6627808173791797387
 Animator:

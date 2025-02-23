@@ -25,9 +25,10 @@ public class Heal : Interactable
             Destroy(toolTipInstance);
         }
 
-        Destroy(gameObject);
-
+        Debug.Log("hui1");
         player.Heal(heal);
+
+        Destroy(gameObject);
     }
 
     public override void ShowTooltip(bool show)

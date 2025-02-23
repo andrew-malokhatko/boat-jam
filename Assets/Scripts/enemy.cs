@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float climbSpeed;
     [SerializeField] private float attackRate = 1.0f;
+    [SerializeField] private GameObject healthPickupPrefab;
     private Tilemap tilemap;
 
     private Animator animator;
@@ -180,6 +181,11 @@ public class Enemy : MonoBehaviour
             color.a = alpha;
             sprite.color = color;
             yield return null;
+        }
+
+        if (Random.value < 0.5f || true)
+        {
+            Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
         }
 
         GameObject obj = GameObject.Find("PirateSpawner");

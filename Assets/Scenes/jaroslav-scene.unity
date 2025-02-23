@@ -9377,7 +9377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c448ec45a305b46b533ce40f4a4554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 5
+  spawnInterval: 0.02
   piratePrefab1: {fileID: 6914889994685216155, guid: a12d0d09feb800343b531eb7410040d3, type: 3}
   piratePrefab2: {fileID: 5378220773607664615, guid: 5601b81f0e6818f4297ef5abad104298, type: 3}
   pirateTransform1: {fileID: 8584210217955388639}
