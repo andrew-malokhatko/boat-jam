@@ -25,8 +25,7 @@ public class Heal : Interactable
             Destroy(toolTipInstance);
         }
 
-        Debug.Log("hui1");
-        player.Heal(heal);
+        player.Heal(heal); // fix
 
         Destroy(gameObject);
     }

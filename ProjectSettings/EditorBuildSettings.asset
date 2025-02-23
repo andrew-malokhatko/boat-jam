@@ -5,21 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene_1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: e5c4c57e7a76d97449d838cb07f365d3
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: ed31a504907cbdd4c9bf1d2f97a4dced
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scene_expanding.unity
     guid: 331e6071ab3247043a7fedd6e87dd195
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/jaroslav-scene.unity
     guid: 3c3378f578402ee43b860411ed83dd56
+  - enabled: 0
+    path: Assets/Scenes/SampleScene_1.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

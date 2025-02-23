@@ -37,7 +37,6 @@ public class hp : MonoBehaviour
     {
         health += heal;
 
-        Debug.Log("hu222221 " + health);
         if (health > maxHP)
         {
             health = maxHP;

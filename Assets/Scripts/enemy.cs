@@ -183,7 +183,7 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
-        if (Random.value < 0.5f || true)
+        if (Random.value < 0.5f)
         {
             Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
         }

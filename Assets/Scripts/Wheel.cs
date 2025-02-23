@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class Wheel : Interactable
 {
