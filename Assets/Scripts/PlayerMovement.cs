@@ -91,7 +91,8 @@ public class PlayerMovement : Sounds
 
             if (jumpCount == 0 && DoubleJump != null)
             {
-                DoubleJump.Play();
+                Instantiate(DoubleJump, transform.position, Quaternion.identity);
+                //DoubleJump.Play();
             } 
         }
 

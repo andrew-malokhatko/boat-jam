@@ -64045,6 +64045,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2869615398992647324, guid: 0171b5da481093240b74816efa25eeb5, type: 3}
+      propertyPath: DoubleJump
+      value: 
+      objectReference: {fileID: 870696431301216297, guid: 05287002f6aa0f74380c8b147b1683db, type: 3}
+    - target: {fileID: 2869615398992647324, guid: 0171b5da481093240b74816efa25eeb5, type: 3}
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 296639086}
