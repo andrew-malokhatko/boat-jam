@@ -61215,6 +61215,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 658175585}
     - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1855986452}
+    - target: {fileID: -3666888473331231401, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: sounds.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -64370,6 +64374,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1855986452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2869615398992647324, guid: 0171b5da481093240b74816efa25eeb5, type: 3}
+  m_PrefabInstance: {fileID: 1627655874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301115664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee41aa180df2a140b9785419d509b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1976693067 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5726389837805247001, guid: b4ead38237943eb4988be45c50c481f2, type: 3}

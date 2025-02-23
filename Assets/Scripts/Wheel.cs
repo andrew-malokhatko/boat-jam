@@ -24,6 +24,7 @@ public class Wheel : Interactable
     public Sprite[] instructionSprites;
 
     public CameraZoom cameraZoom;
+    public PlayerMovement playerMovement;
 
     bool isInteracting = false;
 
@@ -69,6 +70,7 @@ public class Wheel : Interactable
 
         int i = 0;
         spawnActionKeyTooltip(i);
+        playerMovement.LockMovement();
 
         while (i < instructionKeys.Length)
         {
@@ -94,6 +96,8 @@ public class Wheel : Interactable
             }
             yield return null;
         }
+
+        playerMovement.UnlockMovement();
 
         cameraZoom.ResetZoom();
 
