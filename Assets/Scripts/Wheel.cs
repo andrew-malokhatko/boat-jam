@@ -26,7 +26,7 @@ public class Wheel : Interactable
     public CameraZoom cameraZoom;
     public PlayerMovement playerMovement;
 
-    bool isInteracting = false;
+    public bool isInteracting = false;
 
     public void Start()
     {

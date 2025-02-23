@@ -155,6 +155,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c77fc614fd870f44b8a689840dda4059, type: 3}
   hole: {fileID: 6093993061792079210, guid: 43b47931f528cba4389fa66065fb2fbb, type: 3}
   wheel: {fileID: 748356092}
+  timer: {fileID: 2045057456572697313, guid: 0c8d50efb6c405847a3c63cb4e584949, type: 3}
 --- !u!4 &1244793
 Transform:
   m_ObjectHideFlags: 0
@@ -337,11 +338,11 @@ PrefabInstance:
       objectReference: {fileID: 1771897806, guid: 40a62a9ff9d8d8d41acb66715dd48fa5, type: 3}
     - target: {fileID: 1178767287795990489, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 1178767287795990489, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.24
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 1178767287795990489, guid: c5d437abc262a404280a58f410bda15f, type: 3}
       propertyPath: m_LocalPosition.z

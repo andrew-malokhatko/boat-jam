@@ -8,7 +8,12 @@ public class Spawner : Sounds
     public Hole hole;
     public Wheel wheel;
 
+    public GameObject timer;
+
     private Hole holeInstance = null;
+
+    private Timer timerScriptWheel = null;
+    private Timer timerScriptHole = null;
 
     // Max time for each object in seconds
     private const float maxHoleTime = 25.0f;
@@ -37,6 +42,12 @@ public class Spawner : Sounds
         }
         else
         {
+            if (timerScriptHole != null)
+            {
+                timerScriptHole.Destroy();
+                timerScriptHole = null;
+            }
+
             timeSinceHole = 0.0f;
         }
 
@@ -54,6 +65,12 @@ public class Spawner : Sounds
         }
         else
         {
+            if (timerScriptWheel != null && !wheel.isInteracting)
+            {
+                timerScriptWheel.Destroy();
+                timerScriptWheel = null;
+            }
+
             timeSinceWheel = 0.0f;
         }
     }
@@ -83,6 +100,13 @@ public class Spawner : Sounds
             wheel.requiresSteering = true;
 			PlaySound(sounds[1]);
 
+            Vector3 timerPosition = new Vector3(wheel.transform.position.x, wheel.transform.position.y + 0.5f, wheel.transform.position.z);
+
+            GameObject timerWheelObject = Instantiate(timer, timerPosition, Quaternion.identity);
+            timerScriptWheel = timerWheelObject.GetComponent<Timer>();
+
+            timerScriptWheel.SetTime(maxWheelTime);
+
             // require steering every 9 to 12 seconds
             float waitTime = Random.Range(12f, 15f);
             yield return new WaitForSeconds(waitTime);
@@ -92,6 +116,13 @@ public class Spawner : Sounds
     private void SpawnObjects()
     {
         Vector3 randomPos = new Vector3(Random.Range(-12f, 12f), Random.Range(-3.3f, -4f), 0);
+
+        Vector3 timerPosition = new Vector3(randomPos.x, randomPos.y + 0.5f, randomPos.z);
+
+        GameObject timerHoleObject = Instantiate(timer, timerPosition, Quaternion.identity);
+        timerScriptHole = timerHoleObject.GetComponent<Timer>();
+
+        timerScriptHole.SetTime(maxHoleTime);
 
         // spawn hole
         holeInstance = Instantiate(hole, randomPos, Quaternion.identity);
