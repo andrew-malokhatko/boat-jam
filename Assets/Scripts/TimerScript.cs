@@ -9,6 +9,6 @@ public class GameTime : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime; // Увеличиваем время
-        timerLabel.text = "Время: " + elapsedTime.ToString("F2") + " сек"; // Обновляем текст
+        timerLabel.text = "Time: " + elapsedTime.ToString("F2") + " sec"; // Обновляем текст
     }
 }
